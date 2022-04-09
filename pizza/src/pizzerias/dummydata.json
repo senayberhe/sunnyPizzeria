@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "pizzeria_name": "senayPizzeria",
+        "city": "Oakland",
+        "zip_code": 94510
+    },
+    {
+        "id": 2,
+        "pizzeria_name": "ghideyPizzeria",
+        "city": "Oakland",
+        "zip_code": 94326
+    },
+    {
+        "id": 3,
+        "pizzeria_name": "joedoepizza",
+        "city": "San Fransico",
+        "zip_code": 897679
+    },
+    {
+        "id": 4,
+        "pizzeria_name": "medaPizzera",
+        "city": "Oakland",
+        "zip_code": 94610
+    }
+]
