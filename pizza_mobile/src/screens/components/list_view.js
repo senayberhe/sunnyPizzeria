@@ -10,10 +10,15 @@ class ListView extends Component {
             data: [],
         };
     }
-    componentDidMount(){
-        client.get("/").then((response) => {
-            this.setState({ data: response.data});
-        });
+    async componentDidMount(){
+        try {
+            const response = await client.get("/");
+            if(!response.ok){
+                this.setState({ data: response.data});
+            }
+        } catch(error) {
+            console.log(error);
+        }
     }
     render(){
         const {data} = this.state;
@@ -26,19 +31,18 @@ class ListView extends Component {
                         uri: "https://reactnative.dev/img/tiny_logo.png",
                     }}
                 />
-                <Text>results</Text>
                 <Text style={styles.baseText}>Pizza vs. Pizza App </Text>
                 <Text style={styles.newText}>{mytext}</Text>
+                <Text>{data.length} Pizzerias</Text>
                 <FlatList
                     data={data}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={{{item}} =>(
+                    renderItem={({item}) => (
                         <Text style={styles.itemText}>
                             {item.pizzeria_name}, {item.city}
                         </Text>
-                        </SafeAreaView> }>
-
-                </FlatList>
+                    )}
+                />
                 <Button 
                     title="list Item, Click for Details" 
                     onPress={() => this.props.navigation.navigate("Detail")}/>
@@ -51,13 +55,10 @@ class ListView extends Component {
 const styles = StyleSheet.create({
     center: {
       flex: 1,
+      backgroundColor: "#fff",
       justifyContent: "center",
       alignItems: "center",
   },
-   title: {
-      fontSize: 36,
-      marginBottom: 16,
-    },
     baseText: {
         color: "navy",
         fontSize: 30,
@@ -70,6 +71,9 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
     },
+    itemText: {
+        
+    }
 });
 
 
